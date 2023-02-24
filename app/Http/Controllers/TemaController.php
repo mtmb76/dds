@@ -37,7 +37,7 @@ class TemaController extends Controller
         return view('tema', compact('unidades'));
     }
 
-    public function add(Request $request)    
+    public function add(Request $request)
     {
         $credentials = $request->validate([
             'descricao'   => ['required'],
@@ -49,11 +49,11 @@ class TemaController extends Controller
         if( $busca->count() === 0 ){
 
             if ($request->arquivo) {
-                $arquivo = $request->arquivo->store('unidade' . auth()->user()->unidade_id);
+                $arquivo = $request->arquivo->store('public/unidade' . auth()->user()->unidade_id);
             } else {
                 $arquivo = '';
-            }            
-            
+            }
+
             $tema = Tema::create([
                 'descricao'     => trim($request->descricao),
                 'unidade_id'    => auth()->user()->unidade_id,
@@ -96,18 +96,20 @@ class TemaController extends Controller
 
         if ($request->arquivo) {
 
-            $arquivo      = $request->arquivo->store('unidade' . auth()->user()->unidade_id);
+            $arquivo      = $request->arquivo->store('public/unidade' . auth()->user()->unidade_id);
 
             $updateFields = [
                 'descricao' => $request->descricao,
                 'arquivo' => $arquivo,
             ];
+
             #limpa arquivo anterior
             $tema = Tema::where('id',$request->id)->first();
+            if( file_exists('storage/' . str_replace('public/','',$tema->arquivo)) && !empty($tema->arquivo)) {
+                    unlink('storage/'. str_replace('public/','',$tema->arquivo));
+                }
+            #limpa arquivo anterior
 
-        if( file_exists('storage/' . $tema->arquivo) && !empty($tema->arquivo)) {
-                unlink('storage/'. $tema->arquivo); 
-            }
         } else {
             $updateFields = [
                 'descricao' => $request->descricao,

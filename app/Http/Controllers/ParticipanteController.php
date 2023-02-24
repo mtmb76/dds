@@ -30,7 +30,7 @@ class ParticipanteController extends Controller
         $unidades = Unidade::where('id', auth()->user()->unidade_id)->first();
         $unidades = $unidades->descricao;
 
-        return view('participanteList', compact('participantes', 'unidades'));
+        return view('participantelist', compact('participantes', 'unidades'));
     }
 
     public function open(Request $request)

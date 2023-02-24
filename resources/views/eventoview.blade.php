@@ -62,7 +62,7 @@
                     <div class="col-md-1 d-none d-md-block " style="width: 350px;">
                         <label style="font-size: 12px;" for="area"><b>Arquivo de Apresentação:</b></label>
 
-                            <a href="/storage/{{$temas->arquivo}}" style="text-decoration: none; font-size: 14px;" target="_blank" rel="noopener">
+                            <a href="../../storage/{{ str_replace('public/','',$temas->arquivo)}}" style="text-decoration: none; font-size: 14px;" target="_blank" rel="noopener">
                                 <span data-feather="file" style="width: 15px;height: 15px; color:darkviolet;"></span>
                             </a>
                     </div>

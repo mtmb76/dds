@@ -69,7 +69,7 @@
                                 </a>
                                 &nbsp;
                                 @if ($cell->arquivo)
-                                    <a href="/storage/{{$cell->arquivo}}" style="text-decoration: none;" target="_blank" rel="noopener">
+                                    <a href="../storage/{{ str_replace('public/','',$cell->arquivo)}}" style="text-decoration: none;" target="_blank" rel="noopener">
                                         <span data-feather="file"></span>
                                     </a>
                                 @endif

@@ -31,7 +31,7 @@ Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware(['lda
 
 ###################################################################
 
-Route::prefix('admin')->middleware('ldap','auth')->group(
+Route::prefix('admin')->middleware('auth')->group(
     function (){
         Route::get('/lista',[UserController::class,'lista'])->name('admin.lista');
         Route::get('/consulta/{page?}',[UserController::class, 'consulta'])->name('admin.consulta');
@@ -43,7 +43,7 @@ Route::prefix('admin')->middleware('ldap','auth')->group(
 
 # GRUPO DE TEMAS
 ###################################################################
-Route::prefix('tema')->middleware('ldap','auth')->group(
+Route::prefix('tema')->middleware('auth')->group(
     function () {
         Route::get('/lista',[TemaController::class, 'index'])->name('tema.lista');
         Route::get('/consulta/{page?}',[TemaController::class, 'consulta'])->name('tema.consulta');
@@ -60,7 +60,7 @@ Route::prefix('tema')->middleware('ldap','auth')->group(
 
 # GRUPO DE PARTICIPANTES
 ###################################################################
-Route::prefix('participante')->middleware('ldap','auth')->group(
+Route::prefix('participante')->middleware('auth')->group(
     function () {
         Route::get('/lista', [ParticipanteController::class, 'index'])->name('participante.lista');
         Route::get('/consulta/{page?}', [ParticipanteController::class, 'consulta'])->name('participante.consulta');
@@ -77,7 +77,7 @@ Route::prefix('participante')->middleware('ldap','auth')->group(
 
 # GRUPO DE EVENTOS
 ###################################################################
-Route::prefix('evento')->middleware('ldap','auth')->group(
+Route::prefix('evento')->middleware('auth')->group(
     function () {
         Route::get('/lista', [EventoController::class, 'index'])->name('evento.lista');
         Route::get('/consulta/{page?}', [EventoController::class, 'consulta'])->name('evento.consulta');
@@ -95,7 +95,7 @@ Route::prefix('evento')->middleware('ldap','auth')->group(
 
 # GRUPO DE EVENTOSPARTICIPANTES
 ###################################################################
-Route::prefix('eventoparticipante')->middleware('ldap','auth')->group(
+Route::prefix('eventoparticipante')->middleware('auth')->group(
     function () {
         Route::get('/delete/{evento}/{participante}',[EventoparticipanteController::class,'delete'])->name('eventoparticipante.delete');
         Route::post('/add',[EventoparticipanteController::class, 'add'])->name('eventoparticipante.add');
