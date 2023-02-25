@@ -53,6 +53,7 @@ Route::prefix('tema')->middleware('auth')->group(
         Route::get('/edit/{id}',[TemaController::class, 'edit'])->name('tema.edit');
         Route::post('/update',[TemaController::class, 'update'])->name('tema.update');
         Route::get('/delete/{id}', [TemaController::class, 'delete'])->name('tema.delete');
+        Route::post('/import', [TemaController::class, 'import'])->name('tema.import');
     }
 );
 ###################################################################

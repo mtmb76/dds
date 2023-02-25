@@ -168,4 +168,74 @@ class TemaController extends Controller
         return redirect()->intended('tema/lista');
     }
 
+    public function import(Request $request){
+
+        if(! $request->arquivo){
+            return back()->withErrors([
+                'Error' => 'Nenhum arquivo selecionado para importação',
+            ])->onlyInput('Error');
+        }
+
+        if($request->file('arquivo')->getClientOriginalExtension() !== 'txt'){
+            return back()->withErrors([
+                'Error' => 'Este tipo de arquivo selecionado não é compatível com a importação!',
+            ])->onlyInput('Error');
+        }
+
+        $ok  = 0;
+
+        $qtd = 0;
+
+        $file   = $request->arquivo->store('public');
+
+        $file   = 'storage/'. str_replace('public/','',$file);
+
+        $handle = fopen($file, "r");
+
+        if ($handle) {
+
+            while (! feof($handle) ) {
+
+                $qtd += 1;
+
+                $buffer = fgets($handle);
+
+                if ($buffer) {
+
+                    $jaCadastrado = Tema::where('descricao', trim($buffer) )->count();
+
+                    if($jaCadastrado === 0){
+
+                        $tema = Tema::create([
+                            'descricao'     => trim($buffer),
+                            'unidade_id'    => auth()->user()->unidade_id,
+                            'user_id'       => auth()->user()->id,
+                        ]);
+
+                        $ok += 1;
+
+                    }
+                }
+            }
+
+            fclose($handle);
+
+        }
+
+        #limpa arquivo após consumo
+        if( file_exists($file) ) {
+            unlink($file);
+        }
+        #limpa arquivo após consumo
+        $sucesso = 'Foram importados '.$ok. ' de ' .$qtd.' registros do arquivo escolhido...';
+
+        $temas = Tema::where('unidade_id', auth()->user()->unidade_id)->skip(100)->take(100)->Paginate(10);
+
+        $unidades = Unidade::where('id', auth()->user()->unidade_id)->first();
+        $unidades = $unidades->descricao;
+
+        return view('temalist', compact('temas', 'unidades', 'sucesso'));
+
+    }
+
 }

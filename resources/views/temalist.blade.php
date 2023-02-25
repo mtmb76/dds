@@ -18,18 +18,17 @@
 
 @section('auth.content')
 
-        <form class="form-control ml-0" style="border: 0px transparent;" action="{{route('tema.consulta')}}" name="frmTema/consulta" method="GET">
+        <form class="form-control ml-0" style="border: 0px transparent;" action="{{route('tema.consulta')}}" name="frmTema/consulta" enctype="multipart/form-data" method="GET" >
 
             @csrf
-
             @method('GET')
 
             <label style=" font-size: 12px;" for="descricao"><b>Pesquisa pela descrição:</b></label>
             <input id="descricao" name="descricao" style="width: 600px; font-size: 12px;" class="form-control form-control-light p-1" type="text" placeholder="Pesquise aqui pela descrição" aria-label="Pesquise aqui pela descrição">
             <!--<button class="btn btn-success" type="submit">Text</button>-->
 
-            <ul class="navbar-nav mt-3 mb-3" style="margin-left: 0px;">
-                <li class="nav-item text-nowrap">
+            <ul class="navbar-nav mt-2 mb-1" style="margin-left: 0px;">
+                <li class="nav-item text-nowrap mt-3">
                     <button style="width: 100px; height: 30px; font-size: 11px; font-weight: 500;" class="btn btn-info" type="submit">Pesquisar</button>
                     <a href="{{route('tema.lista')}}"
                         <button style="width: 100px; height: 30px; font-size: 11px; font-weight: 500;" class="btn btn-warning" type="button">Atualizar</button>
@@ -87,18 +86,38 @@
         </table>
 
         <nav aria-label="...">
-        <ul class="pagination w-100" style=" font-size: 12px;">
-            <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=1')}}">1</a></li>
-            <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=2')}}">2</a></li>
-            <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=3')}}">3</a></li>
-            <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=4')}}">4</a></li>
-            <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=5')}}">5</a></li>
-            <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=6')}}">6</a></li>
-            <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=7')}}">7</a></li>
-            <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=8')}}">8</a></li>
-            <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=9')}}">9</a></li>
-            <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=10')}}">10</a></li>
-        </ul>
+            <ul class="pagination w-100" style=" font-size: 12px;">
+                <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=1')}}">1</a></li>
+                <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=2')}}">2</a></li>
+                <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=3')}}">3</a></li>
+                <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=4')}}">4</a></li>
+                <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=5')}}">5</a></li>
+                <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=6')}}">6</a></li>
+                <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=7')}}">7</a></li>
+                <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=8')}}">8</a></li>
+                <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=9')}}">9</a></li>
+                <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=10')}}">10</a></li>
+            </ul>
         </nav>
+
+        @if(Auth()->user()->grupo == 'admin')
+
+            <form class="form-control w-50 bg-gradient p-2 text-dark bg-opacity-10" action="{{route('tema.import')}}" name="frmImport" enctype="multipart/form-data" method="POST" >
+
+                @csrf
+                @method('POST')
+
+                <div class="d-inline-flex ml-0 " style="width: 100%;">
+                    <div class="d-inline ">
+                        <label style="font-weight: 600; font-size: 14px; margin-left: 5px;" for="arquivo">Selecione um arquivo texto contendo sua lista para importação: </label>
+                        <input class="mr-0 form-control"  style="width: 450px; font-size: 12px; height: 30px;" type="file" accept = ".txt" id="arquivo" name="arquivo" aria-placeholder="Selecione um arquivo para importar">
+                    </div>
+                    <div class="d-inline pt-4 p-3 ">
+                        <button style="width: auto; height: 30px; font-size: 11px; font-weight: 600;" class="btn btn-outline-dark" type="submit"> Processar Arquivo </button>
+                    </div>
+                </div>
+            </form>
+
+        @endif
 
 @endsection

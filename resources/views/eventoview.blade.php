@@ -123,6 +123,7 @@
                         <th>#</th>
                         <th>Crachá</th>
                         <th>Participante</th>
+                        <th>Origem</th>
                         <th>Ação</th>
                     </tr>
                 </thead>
@@ -132,7 +133,8 @@
                             <tr>
                                 <td style="width: 10%;">{{$cell->id}}</td>
                                 <td style="width: 20%;">{{$cell->cracha}}</td>
-                                <td style="width: 60%;">{{$cell->nome}}</td>
+                                <td style="width: 40%;">{{$cell->nome}}</td>
+                                <td style="width: 20%; color: #0f6674; font-weight: 600;">{{\App\Models\Unidade::find($cell->unidade_id)->descricao}} </td>
                                 <td style="width: 10%; color: darkslategray">
                                     <a href="{{ route('eventoparticipante.delete', ['evento'=>$campos->id,'participante'=>$cell->id]) }}" style="text-decoration: none;">
                                         <span data-feather="trash"></span>
@@ -143,6 +145,7 @@
                     @else
                         <tr>
                             <td>Nenhum participante vinculado ainda...</td>
+                            <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
