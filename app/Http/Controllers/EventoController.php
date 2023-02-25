@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use Illuminate\Http\Request;
 use App\Models\Unidade;
 use App\Models\Evento;
 use App\Models\Eventoparticipante;
 use App\Models\Tema;
-use PDF;
 use Illuminate\Support\Facades\Auth;
 
 class EventoController extends Controller

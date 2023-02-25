@@ -41,8 +41,5 @@ class LDAPMiddleware
         }else{
             return $next($request);
         }
-        
-
-        
     }
 }

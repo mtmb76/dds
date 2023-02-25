@@ -202,7 +202,7 @@ class TemaController extends Controller
 
                 if ($buffer) {
 
-                    $jaCadastrado = Tema::where('descricao', trim($buffer) )->count();
+                    $jaCadastrado = Tema::where('descricao', trim($buffer) )->where('unidade_id',auth()->user()->unidade_id)->count();
 
                     if($jaCadastrado === 0){
 

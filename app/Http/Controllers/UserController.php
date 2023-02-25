@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Unidade;
 use App\Models\User;
 use App\Models\Evento;
+use App\Models\Tema;
+use App\Models\Participante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Tema;
+use Illuminate\Support\Facades\DB;
+
 
 class UserController extends Controller
 {
@@ -82,6 +85,10 @@ class UserController extends Controller
 
             $this->geraCalendarioJS();
 
+            $this->geraGraficoUnidade();
+
+            $this->geraGraficoGeral();
+
             $unidades = Unidade::where('id', auth()->user()->unidade_id)->first();
 
             $unidades = $unidades->descricao;
@@ -101,6 +108,10 @@ class UserController extends Controller
     public function dashboard(Request $request){
 
         $this->geraCalendarioJS();
+
+        $this->geraGraficoUnidade();
+
+        $this->geraGraficoGeral();
 
         $unidades    = Unidade::where('id', auth()->user()->unidade_id)->first();
 
@@ -200,6 +211,148 @@ class UserController extends Controller
         return view('adminedit', compact('unidades', 'campos','sucesso'));
     }
 
+    public function geraGraficoUnidade(){
+
+        $dias           = '';
+        $qtd            = 0;
+        $participacoes  = '';
+        $ausencias = '';
+        $qtdDiasMes     = date("t");
+        $ativos         = Participante::where('ativo','1')->
+                                         where('unidade_id',auth()->user()->unidade_id)->count();
+
+        for ($i=1; $i <= $qtdDiasMes; $i++) { 
+            $dias = $dias . "'".$i."',";
+            $qtd  = DB::scalar('SELECT COUNT(*) AS participacoes 
+                                  FROM eventoparticipantes a 
+                                 WHERE a.evento_id IN( 
+                                                      SELECT id 
+                                                        FROM eventos 
+                                                       WHERE dia = :dia 
+                                                         AND unidade_id = :unidade_id)'
+                                                        ,[ 'dia' => date('Y-m-'). str_pad($i,2,'0',STR_PAD_LEFT), 
+                                                        'unidade_id' => auth()->user()->unidade_id ]);
+            $participacoes .= $qtd . ',';
+            $ausencias .= ($ativos - $qtd) . ',';
+        }
+
+        $corpo = '
+            $(document).ready(function () {
+                var ctx = document.getElementById("grafico_participacoes_unidade").getContext("2d");
+                var myChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: ['. $dias .'],
+                    labely:["'.$ativos.'"],
+                    datasets: [
+                    {
+                        label: "Participações",
+                        data: ['.$participacoes.'],
+                        backgroundColor: "#22a32f",
+                    },
+                    {
+                        label: "Ausências", 
+                        data: ['.$ausencias.'],
+                        backgroundColor: "#dbd96b",
+                    },
+            
+                    ],
+                },
+                });
+            });
+        ';
+
+        $file = "js/" . auth()->user()->id . "_grafico-unidade.js";
+
+        if( file_exists($file) ){
+            if( unlink($file) ){
+                $arquivo = fopen($file, "w");
+                fwrite($arquivo, $corpo);
+                fclose($arquivo);
+                $retorno = true;
+            }else{
+                $retorno = false;
+            }
+        }else{
+            $arquivo = fopen($file, "w");
+            fwrite($arquivo, $corpo);
+            fclose($arquivo);
+            $retorno = true;
+        }
+
+        return $retorno;
+
+    }
+
+public function geraGraficoGeral(){
+
+        $dias           = '';
+        $qtd            = 0;
+        $participacoes  = '';
+        $ausencias = '';
+        $qtdDiasMes     = date("t");
+        $ativos         = Participante::where('ativo','1')->count();
+
+        for ($i=1; $i <= $qtdDiasMes; $i++) { 
+            $dias = $dias . "'".$i."',";
+            $qtd  = DB::scalar('SELECT COUNT(*) AS participacoes 
+                                  FROM eventoparticipantes a 
+                                 WHERE a.evento_id IN( 
+                                                      SELECT id 
+                                                        FROM eventos 
+                                                       WHERE dia = :dia)'
+                                                        ,[ 'dia' => date('Y-m-'). str_pad($i,2,'0',STR_PAD_LEFT)]);
+            $participacoes .= $qtd . ',';
+            $ausencias .= ($ativos - $qtd) . ',';
+        }
+
+        $corpo = '
+            $(document).ready(function () {
+                var ctx = document.getElementById("grafico_participacoes_geral").getContext("2d");
+                var myChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: ['. $dias .'],
+                    labely:["'.$ativos.'"],
+                    datasets: [
+                    {
+                        label: "Participações",
+                        data: ['.$participacoes.'],
+                        backgroundColor: "#22a32f",
+                    },
+                    {
+                        label: "Ausências", 
+                        data: ['.$ausencias.'],
+                        backgroundColor: "#dbd96b",
+                    },
+            
+                    ],
+                },
+                });
+            });
+        ';
+
+        $file = "js/" . auth()->user()->id . "_grafico-geral.js";
+
+        if( file_exists($file) ){
+            if( unlink($file) ){
+                $arquivo = fopen($file, "w");
+                fwrite($arquivo, $corpo);
+                fclose($arquivo);
+                $retorno = true;
+            }else{
+                $retorno = false;
+            }
+        }else{
+            $arquivo = fopen($file, "w");
+            fwrite($arquivo, $corpo);
+            fclose($arquivo);
+            $retorno = true;
+        }
+
+        return $retorno;
+
+    }
     public function geraCalendarioJS(){
 
         $data_incio  = date("Y-m-01");
