@@ -49,6 +49,7 @@
         </div>
 
         <input name="id" type="hidden" value="{{$campos->id}}">
+        <input name="cpf" type="hidden" value="{{$campos->cpf}}">
 
         <nav class="navbar navbar-light bg-light flex-md-nowrap p-0">
             <ul class="navbar-nav px-0">

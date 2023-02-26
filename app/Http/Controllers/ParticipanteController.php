@@ -174,6 +174,7 @@ class ParticipanteController extends Controller
         // Extrai somente os números
         $cpf = preg_replace( '/[^0-9]/is', '', $cpf );
 
+
         // Verifica se foi informado todos os digitos corretamente
         if (strlen($cpf) != 11) {
             return false;

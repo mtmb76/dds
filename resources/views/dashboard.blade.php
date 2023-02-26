@@ -26,15 +26,24 @@
 @section('auth.content')
 
 
-    <ul class="nav nav-tabs"  style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; " id="myTab" role="tablist">
+    <ul class="nav nav-tabs"  id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active " id="calendario-tab" data-bs-toggle="tab" data-bs-target="#calendario" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Calendário</button>
+            <button class="nav-link active " id="calendario-tab" data-bs-toggle="tab" data-bs-target="#calendario" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"> 
+                <span data-feather="corner-left-down"></span> 
+                &nbsp; Eventos - Agenda
+            </button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="grafico-unidade-tab" data-bs-toggle="tab" data-bs-target="#grafico-unidade" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Participações da Unidade</button>
+            <button class="nav-link" id="grafico-unidade-tab" data-bs-toggle="tab" data-bs-target="#grafico-unidade" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
+                <span data-feather="trending-up"></span> 
+                &nbsp; Gráfico - Unidade
+            </button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="grafico-geral-tab" data-bs-toggle="tab" data-bs-target="#grafico-geral" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Participações Geral</button>
+            <button class="nav-link" id="grafico-geral-tab" data-bs-toggle="tab" data-bs-target="#grafico-geral" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
+                <span data-feather="bar-chart"></span> 
+                &nbsp; Gráfico - Geral
+            </button>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
