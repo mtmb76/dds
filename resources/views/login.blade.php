@@ -63,7 +63,12 @@
   .cntr {
     width: 100vw;
     height: 100vh;
-    background: #f8fafc;
+    background: url('img/bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9;
+    z-index: -1;
     display: flex;
     flex-direction: row;
     justify-content: center;

@@ -74,6 +74,7 @@ body {
     padding-top: 3%;
     height: max-content;
     font-size: 10px;
+    overflow-y: auto;
     /* Espaço para o navbar fixo. */
 }
 

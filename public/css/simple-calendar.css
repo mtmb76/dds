@@ -18,12 +18,12 @@
     height: 30px;
     text-align: center;
     line-height: 30px;
-    color: #CBD1D2;
+    color: #7ea2ab;
     border-radius: 50%;
-    border: 2px solid #CBD1D2; }
+    border: 2px solid #759198; }
 
 .calendar header .btn:hover {
-    background: #CBD1D2;
+    background: #c0cfd2;
     color: white; }
 
 .calendar header .btn:before {

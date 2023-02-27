@@ -125,7 +125,7 @@
                 </nav>
             </div>
 
-            <div class="col col-md-10 d-none d-md-block bg-light " >
+            <div class="col col-md-10 d-none d-md-block bg-light">
                 <main role="main" class="fixed-top col-md-6 pl-sm-6 col-lg-12 px-2" style="width: 83%; position: absolute; margin-left: 17%;">
                     <div class="flex-md-nowrap pt-3 pb-1 mr-6 mb-3 border-bottom">
                         <h4 class="h2">@yield('form.title')</h4>
