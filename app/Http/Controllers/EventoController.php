@@ -10,23 +10,48 @@ use App\Models\Eventoparticipante;
 use App\Models\Tema;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Summary of EventoController
+ */
 class EventoController extends Controller
 {
 
+    /**
+     * Summary of index
+     * @param Request $request
+     * @return mixed
+     */
     public function index(Request $request)
     {
-        $hoje     = date('Y-m-d');
+        $data_inicio = mktime(0, 0, 0, date('m'), 1, date('Y'));
+        $data_fim   = mktime(23, 59, 59, date('m'), date("t"), date('Y'));
+        $data_inicio =  date('Y-m-d', $data_inicio);
+        $data_fim   = date('Y-m-d', $data_fim);
+        $hoje    = date('Y-m-d');
+
         $eventos  = Evento::where('unidade_id', auth()->user()->unidade_id)->where('dia','>=',$hoje)->skip(100)->take(100)->Paginate(10);
         $temas    = Tema::where('unidade_id', auth()->user()->unidade_id)->get();
         $unidades = Unidade::where('id', auth()->user()->unidade_id)->first();
         $unidades = $unidades->descricao;
 
-        return view('eventolist', compact('eventos', 'unidades', 'hoje', 'temas'));
+        return view('eventolist', compact('eventos', 'unidades', 'data_inicio', 'data_fim', 'temas'));
     }
 
+
+    /**
+     * Summary of consulta
+     * @param Request $request
+     * @return mixed
+     */
     public function consulta(Request $request)
     {
-        $hoje    = date('Y-m-d');
+
+        $data_inicio = mktime(0, 0, 0, date('m'), 1, date('Y'));
+        $data_fim   = mktime(23, 59, 59, date('m'), date("t"), date('Y'));
+        $data_inicio =  date('Y-m-d', $data_inicio);
+        $data_fim   = date('Y-m-d', $data_fim);
+        #$hoje    = date('Y-m-d');
+
         if($request->tema){
             $eventos = Evento::whereBetween('dia',[$request->diainicio, $request->diafim])->
                             where('area','like','%'.$request->area.'%')->
@@ -49,18 +74,35 @@ class EventoController extends Controller
         $unidades = Unidade::where('id', auth()->user()->unidade_id)->first();
         $unidades = $unidades->descricao;
 
-        return view('eventolist', compact('eventos', 'unidades','hoje', 'temas'));
+        return view('eventolist', compact('eventos', 'unidades', 'data_inicio', 'data_fim', 'temas'));
     }
 
+
+    /**
+     * Summary of open
+     * @param Request $request
+     * @return mixed
+     */
     public function open(Request $request)
     {
-        $hoje     = date('Y-m-d');
+        $data_inicio = mktime(0, 0, 0, date('m'), 1, date('Y'));
+        $data_fim   = mktime(23, 59, 59, date('m'), date("t"), date('Y'));
+        $data_inicio =  date('Y-m-d', $data_inicio);
+        $data_fim   = date('Y-m-d', $data_fim);
+        $hoje    = date('Y-m-d');
+
         $temas    = Tema::where('unidade_id',auth()->user()->unidade_id)->get();
         $unidades = Unidade::where('id', auth()->user()->unidade_id)->first();
         $unidades = $unidades->descricao;
-        return view('evento', compact('unidades', 'hoje', 'temas'));
+        return view('evento', compact('unidades', 'hoje', 'data_inicio', 'data_fim', 'temas'));
     }
 
+
+    /**
+     * Summary of add
+     * @param Request $request
+     * @return mixed
+     */
     public function add(Request $request)
     {
 
@@ -70,6 +112,12 @@ class EventoController extends Controller
             'area'       => ['required'],
             'tema_id'    => ['required'],
         ]);
+
+        if( date_format(date_create($request->dia),'Ymd') <  date('Ymd') && auth()->user()->grupo !== 'admin'){
+            return back()->withErrors([
+                'Error' => 'Eventos retroativo só poderão ser cadastrados por um administrador.',
+            ])->onlyInput('Error');
+        }
 
         $busca = Evento::whereDate('dia', $request->dia)->
                          where('area',  $request->area)->
@@ -89,8 +137,8 @@ class EventoController extends Controller
             $sucesso = 'Registro cadastrado com sucesso...';
         } else {
             return back()->withErrors([
-                'descricao' => 'Este Evento já está cadastrado.',
-            ])->onlyInput('descricao');
+                'Error' => 'Este Evento já está cadastrado.',
+            ])->onlyInput('Error');
         }
         $hoje     = date('Y-m-d');
         $temas    = Tema::where('unidade_id', auth()->user()->unidade_id)->get();
@@ -100,6 +148,12 @@ class EventoController extends Controller
         return view('evento', compact('unidades', 'sucesso', 'hoje', 'temas'));
     }
 
+
+    /**
+     * Summary of edit
+     * @param mixed $id
+     * @return mixed
+     */
     public function edit($id)
     {
 
@@ -108,6 +162,12 @@ class EventoController extends Controller
             return back()->withErrors([
                 'resp' => 'Evento não localizado para edição.',
             ])->onlyInput('resp');
+        }
+
+        if (date_format(date_create($campos->dia), 'Ymd') <  date('Ymd') && auth()->user()->grupo !== 'admin') {
+            return back()->withErrors([
+                'Error' => 'Eventos retroativo só poderão ser alterados por um administrador.',
+            ])->onlyInput('Error');
         }
 
         # Se já possuir marcações de presença, não deixa editar o formulário mais...
@@ -127,6 +187,12 @@ class EventoController extends Controller
 
     }
 
+
+    /**
+     * Summary of update
+     * @param Request $request
+     * @return mixed
+     */
     public function update(Request $request)
     {
 
@@ -163,6 +229,12 @@ class EventoController extends Controller
         return view('eventoedit', compact('campos', 'unidades','sucesso', 'hoje', 'id', 'temas','disabled'));
     }
 
+
+    /**
+     * Summary of view
+     * @param mixed $id
+     * @return mixed
+     */
     public function view($id)
     {
         $hoje       = date('Y-m-d');
@@ -186,9 +258,15 @@ class EventoController extends Controller
        $unidades = Unidade::where('id', auth()->user()->unidade_id)->first();
        $unidades = $unidades->descricao;
 
-       return view('eventoview', compact('campos', 'unidades','hoje', 'temas', 'id', 'participante'));
+       return view('eventoview', compact('campos', 'unidades', 'hoje', 'temas', 'id', 'participante'));
     }
 
+
+    /**
+     * Summary of delete
+     * @param mixed $id
+     * @return mixed
+     */
     public function delete($id)
     {
         Evento::where('id', $id)->where('unidade_id', auth()->user()->unidade_id)->delete();
@@ -199,6 +277,12 @@ class EventoController extends Controller
         return redirect()->intended('evento/lista');
     }
 
+
+    /**
+     * Summary of ata
+     * @param mixed $id
+     * @return mixed
+     */
     public function ata($id){
 
         $evento         = Evento::where('id',$id)->

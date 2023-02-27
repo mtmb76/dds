@@ -84,7 +84,9 @@
                 @endif
             </tbody>
         </table>
-
+<div class="col-lg-12">
+   
+</div>
         <nav aria-label="...">
             <ul class="pagination w-100" style=" font-size: 12px;">
                 <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=1')}}">1</a></li>

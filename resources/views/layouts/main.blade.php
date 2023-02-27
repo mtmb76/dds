@@ -50,51 +50,56 @@
                                     </a>
                                 </li>
                             @endif
+                            
+                            @if ( Auth()->user()->grupo === 'admin' ||
+                                  Auth()->user()->grupo === 'ssma'  ||
+                                  Auth()->user()->grupo === 'lider')
+                                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                                    <span>Cadastros</span>
+                                    <a class="d-flex align-items-center text-muted" href="#">
+                                        <span data-feather="more-horizontal"></span>
+                                    </a>
+                                </h6>
 
-                            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                                <span>Cadastros</span>
-                                <a class="d-flex align-items-center text-muted" href="#">
-                                    <span data-feather="more-horizontal"></span>
-                                </a>
-                            </h6>
+                                @if ( Auth()->user()->grupo === 'admin' ||
+                                      Auth()->user()->grupo === 'ssma'  )
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('tema.lista') }}">
+                                            <span data-feather="paperclip"></span>
+                                            Temas
+                                            </a>
+                                        </li>
+                                @endif
+                                @if ( Auth()->user()->grupo === 'admin' ||
+                                      Auth()->user()->grupo === 'ssma'  ||
+                                      Auth()->user()->grupo === 'lider')
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ route('participante.lista') }}">
+                                            <span data-feather="user-check"></span>
+                                            Participantes
+                                            </a>
+                                        </li>
+                                @endif
+                                @if ( Auth()->user()->grupo === 'admin' ||
+                                      Auth()->user()->grupo === 'ssma'  )
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('evento.lista') }}">
+                                        <span data-feather="check-square"></span>
+                                        Eventos
+                                        </a>
+                                    </li>
+                                @endif
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('tema.lista') }}">
-                                <span data-feather="paperclip"></span>
-                                Temas
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('participante.lista') }}">
-                                <span data-feather="users"></span>
-                                Participantes
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('evento.lista') }}">
-                                <span data-feather="check-square"></span>
-                                Eventos
-                                </a>
-                            </li>
+                            @endif
+
                         </ul>
-                        <!--
-                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                            <span>Relatórios</span>
-                            <a class="d-flex align-items-center text-muted" href="#">
-                                <span data-feather="more-horizontal"></span>
-                            </a>
-                        </h6>
-                        <ul class="nav flex-column mb-2">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                <span data-feather="printer"></span>
-                                Lista de Presenças
-                                </a>
-                            </li>
-                        </ul>
-                        -->
+
                         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                             <span>Sessão</span>
+                        </h6>
+                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                            <span> {{Auth()->user()->grupo}}</span>
+                            <span data-feather="users"></span>
                         </h6>
                         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                             <span>@yield('user.name')</span>

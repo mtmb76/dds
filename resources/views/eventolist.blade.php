@@ -27,13 +27,13 @@
             <label for="dias" style=" font-size: 12px;"><b>Pesquisa pela data entre:</b></label>
             <div id="dias" class="row">
                 <div class="col-md-1 d-none d-md-block bg-light" style="width: 220px;">
-                    <input id="diainicio" name="diainicio" value="{{$hoje}}" style="width: 200px; margin-bottom: 10px; font-size: 12px;" class="form-control form-control-light p-1 mb-2" type="date" placeholder="Pesquise aqui pela data" aria-label="Pesquise aqui pela data">
+                    <input id="diainicio" name="diainicio" value="{{$data_inicio}}" style="width: 200px; margin-bottom: 10px; font-size: 12px;" class="form-control form-control-light p-1 mb-2" type="date" placeholder="Pesquise aqui pela data" aria-label="Pesquise aqui pela data">
                 </div>
                 <div class="col-md-1 d-none d-md-block bg-light" style="width: 10px;">
                     e
                 </div>
                 <div class="col-md-1 d-none d-md-block bg-light" style="width: 220px;">
-                    <input id="diafim" name="diafim" value="{{$hoje}}" style="width: 200px; margin-bottom: 10px; font-size: 12px;" class="form-control form-control-light p-1 mb-2" type="date" placeholder="Pesquise aqui pela data" aria-label="Pesquise aqui pela data">
+                    <input id="diafim" name="diafim" value="{{$data_fim}}" style="width: 200px; margin-bottom: 10px; font-size: 12px;" class="form-control form-control-light p-1 mb-2" type="date" placeholder="Pesquise aqui pela data" aria-label="Pesquise aqui pela data">
                 </div>
             </div>
 

@@ -12,9 +12,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 
+/**
+ * Summary of UserController
+ */
 class UserController extends Controller
 {
-    # Login
+
+    /**
+     * Summary of login
+     * @return mixed
+     */
     public function login(){
 
         if( Auth::check() && Auth()->user()->ativo === 1 ){
@@ -28,7 +35,12 @@ class UserController extends Controller
         return view('login', compact('terminais'));
     }
 
-    #logout
+
+    /**
+     * Summary of logout
+     * @param Request $request
+     * @return mixed
+     */
     public function logout(Request $request)
     {
         Auth::logout();
@@ -40,7 +52,12 @@ class UserController extends Controller
         return redirect('/login');
     }
 
-    #autenticar o usuaário
+
+    /**
+     * Summary of autenticar
+     * @param Request $request
+     * @return mixed
+     */
     public function autenticar(Request $request)
     {
 
@@ -95,7 +112,13 @@ class UserController extends Controller
 
             $userid   = auth()->user()->id;
 
-            return view('dashboard', compact('unidades', 'userid'));
+            if(auth()->user()->grupo === 'lider'){
+                return redirect()->intended('participante/lista');
+            }else{
+                return view('dashboard', compact('unidades', 'userid'));
+            }
+            
+
         } else {
             return back()->withErrors([
                 'email' => 'As credenciais informadas são inválidas, ou não possui acesso a unidade escolhida...',
@@ -104,7 +127,12 @@ class UserController extends Controller
 
     }
 
-    #chamd o dashboad do usuário logado
+
+    /**
+     * Summary of dashboard
+     * @param Request $request
+     * @return mixed
+     */
     public function dashboard(Request $request){
 
         $this->geraCalendarioJS();
@@ -123,6 +151,12 @@ class UserController extends Controller
 
     }
 
+
+    /**
+     * Summary of lista
+     * @param Request $request
+     * @return mixed
+     */
     public function lista(Request $request){
 
         $users      = User::all();
@@ -132,6 +166,12 @@ class UserController extends Controller
         return view('adminlista', compact('nomeUnidade','users'));
     }
 
+
+    /**
+     * Summary of consulta
+     * @param Request $request
+     * @return mixed
+     */
     public function consulta(Request $request){
 
 
@@ -147,6 +187,12 @@ class UserController extends Controller
         return view('adminlista', compact('nomeUnidade','users'));
     }
 
+
+    /**
+     * Summary of delete
+     * @param mixed $id
+     * @return mixed
+     */
     public function delete($id)
     {
         if( User::where('id', $id)->delete() ){
@@ -165,6 +211,12 @@ class UserController extends Controller
 
     }
 
+
+    /**
+     * Summary of edit
+     * @param mixed $id
+     * @return mixed
+     */
     public function edit($id)
     {
         $campos = User::where('id', $id)->first();
@@ -182,6 +234,12 @@ class UserController extends Controller
         return view('adminedit', compact('unidades', 'campos'));
     }
 
+
+    /**
+     * Summary of update
+     * @param Request $request
+     * @return mixed
+     */
     public function update(Request $request)
     {
         $update = User::where('id', $request->id)->
@@ -211,6 +269,11 @@ class UserController extends Controller
         return view('adminedit', compact('unidades', 'campos','sucesso'));
     }
 
+
+    /**
+     * Summary of geraGraficoUnidade
+     * @return bool
+     */
     public function geraGraficoUnidade(){
 
         $dias           = '';
@@ -284,7 +347,12 @@ class UserController extends Controller
 
     }
 
-public function geraGraficoGeral(){
+
+    /**
+     * Summary of geraGraficoGeral
+     * @return bool
+     */
+    public function geraGraficoGeral(){
 
         $dias           = '';
         $qtd            = 0;
@@ -353,15 +421,20 @@ public function geraGraficoGeral(){
         return $retorno;
 
     }
+
+
+    /**
+     * Summary of geraCalendarioJS
+     * @return bool
+     */
     public function geraCalendarioJS(){
 
-        $data_incio  = date("Y-m-01");
+        #$data_incio  = date("Y-m-01");
 
-        $data_fim    = date("Y-m-t");
+        #$data_fim    = date("Y-m-t");
 
-        $eventos     = Evento::whereBetween('dia', [$data_incio, $data_fim])->
-                               where('unidade_id',auth()->user()->unidade_id)->
-                               orderBy('dia')->get();
+        #$eventos     = Evento::whereBetween('dia', [$data_incio, $data_fim])->where('unidade_id',auth()->user()->unidade_id)->orderBy('dia')->get();
+        $eventos     = Evento::where('unidade_id',auth()->user()->unidade_id)->orderBy('dia')->get();
 
         $jsonEventos = '';
 

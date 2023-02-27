@@ -30,7 +30,7 @@
 
     <div class="form-group">
         <label style="font-size: 12px;" for="area"><b>Unidade:</b></label>
-        <input id="unidade_id" class="form-control mb-2 py-0" style="width: 150px; text-align: center;" type="text" name="dstema" disabled value="{{$unidades}}">
+        <input id="unidade_id" class="form-control mb-2 py-0" style="width: 150px; text-align: center;font-size: 12px; font-weight: 600;" type="text" name="dstema" disabled value="{{$unidades}}">
 
         <label style="font-size: 12px;"  for="dia"><b>Dia do evento:</b></label>
         <input id="dia" name="dia" value="{{$campos->dia}}" style="width: 200px; margin-bottom: 10px; font-size: 12px;" class="form-control form-control-light p-1 mb-2" type="date" placeholder="Informe a data" aria-label="Informe a data" {{($disabled <> 0)?'disabled':'required'}}>
@@ -63,7 +63,7 @@
         <select class="form-select form-select-sm" style="width: 445px; margin-bottom: 20px; font-size: 12px;" name="tema_id" id="tema_id" {{($disabled <> 0)?'disabled':'required'}}>
             <option value="">Selecione um tema</option>
             @foreach($temas as $cell)
-                <option value="{{$cell->id}}" {{($campos->id == $cell->id)?'selected':''}}>{{$cell->descricao}}</option>
+                <option value="{{$cell->id}}" {{($campos->tema_id == $cell->id)?'selected':''}}>{{$cell->descricao}}</option>
             @endforeach
         </select>
 

@@ -38,7 +38,9 @@
                     <select class="form-select form-select-sm" style="width: 200px; font-size: 12px;" name="grupo" id="grupo">
                         <option value="">Abra para selecionar</option>
                         <option value="admin" {{($campos->grupo === 'admin')?' selected':''}}>Administrador</option>
-                        <option value="ssma" {{($campos->grupo === 'ssma')?' selected':''}}>Operador</option>
+                        <option value="head" {{($campos->grupo === 'head')?' selected':''}}>Gestor Unidade</option>
+                        <option value="ssma" {{($campos->grupo === 'ssma')?' selected':''}}>SSMA</option>
+                        <option value="lider" {{($campos->grupo === 'lider')?' selected':''}}>Líder de Área</option>
                     </select>
 
                 </div>

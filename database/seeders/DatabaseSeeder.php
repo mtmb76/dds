@@ -21,14 +21,23 @@ class DatabaseSeeder extends Seeder
             'descricao' => 'Escritório Central',
         ]);
         \App\Models\Unidade::factory()->create([
-            'descricao' => 'Guarujá',
+            'descricao' => 'Guarujá T1',
         ]);
+        \App\Models\Unidade::factory()->create([
+            'descricao' => 'Guarujá T2',
+        ]);        
         \App\Models\Unidade::factory()->create([
             'descricao' => 'Itajaí',
         ]);
         \App\Models\Unidade::factory()->create([
-            'descricao' => 'Suape',
+            'descricao' => 'Suape T1',
         ]);
+        \App\Models\Unidade::factory()->create([
+            'descricao' => 'Suape T2',
+        ]);
+        \App\Models\Unidade::factory()->create([
+            'descricao' => 'Suape Transportadora',
+        ]);         
 
         # seed em usuários
         \App\Models\User::factory(1)->create();
