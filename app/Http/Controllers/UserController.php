@@ -30,7 +30,7 @@ class UserController extends Controller
 
         Auth::logout();
 
-        $terminais = Unidade::orderby('descricao')->get(['id', 'descricao']);
+        $terminais = Unidade::orderby('id')->get(['id', 'descricao']);
 
         return view('login', compact('terminais'));
     }

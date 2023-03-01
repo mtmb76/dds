@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
+#use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -26,7 +26,7 @@ class UserFactory extends Factory
             'remember_token' => '',#Str::random(10),
             'grupo' => 'admin',
             'ativo' => '1',
-            'unidade_id' => 4,#fake()->numberBetween(1,4),
+            'unidade_id' => 5,#fake()->numberBetween(1,4),
         ];
     }
 

@@ -109,12 +109,6 @@
                             <span> @yield('user.unidade')</span>
                             <span data-feather="map-pin"></span>
                         </h6>
-                        @if(Auth()->user()->grupo === 'admin')
-                            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                                <span style="color: cadetblue;">Administrador</span>
-                                <span data-feather="award"></span>
-                            </h6>
-                        @endif
                         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                             <span>Sair</span>
                             <a class="d-flex align-items-center text-muted" href="{{route('logout')}}">

@@ -3,6 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Evento;
+use App\Models\Participante;
+use App\Models\Tema;
+use App\Models\Unidade;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,39 +22,39 @@ class DatabaseSeeder extends Seeder
 
         # seed em unidades 
         ############################################### roda primeiro isso aqui
-        \App\Models\Unidade::factory()->create([
-            'descricao' => 'Escritório Central',
-        ]);
-        \App\Models\Unidade::factory()->create([
-            'descricao' => 'Guarujá T1',
-        ]);
-        \App\Models\Unidade::factory()->create([
-            'descricao' => 'Guarujá T2',
-        ]);        
-        \App\Models\Unidade::factory()->create([
+        Unidade::factory()->create([
             'descricao' => 'Itajaí',
         ]);
-        \App\Models\Unidade::factory()->create([
-            'descricao' => 'Suape T1',
+        Unidade::factory()->create([
+            'descricao' => 'Escritório Central',
         ]);
-        \App\Models\Unidade::factory()->create([
-            'descricao' => 'Suape T2',
+        Unidade::factory()->create([
+            'descricao' => 'Guarujá Terminal I',
         ]);
-        \App\Models\Unidade::factory()->create([
+        Unidade::factory()->create([
+            'descricao' => 'Guarujá Terminal II',
+        ]);        
+       Unidade::factory()->create([
+            'descricao' => 'Suape Terminal I',
+        ]);
+        Unidade::factory()->create([
+            'descricao' => 'Suape Terminal II',
+        ]);
+        Unidade::factory()->create([
             'descricao' => 'Suape Transportadora',
         ]);         
 
         # seed em usuários
-        \App\Models\User::factory(1)->create();
+        User::factory(1)->create();
 
         #seed em temas
-        \App\Models\Tema::factory(900)->create();
+        Tema::factory(20000)->create();
 
         #seed de participantes
-        \App\Models\Participante::factory(1000)->create();
+        Participante::factory(10000)->create();
         
         #seed de eventos
-        \App\Models\Evento::factory(0)->create();        
+        Evento::factory(0)->create();        
 
     }
 }

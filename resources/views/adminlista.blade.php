@@ -34,7 +34,9 @@
                 <select class="form-select form-select-sm" style="width: 200px; font-size: 12px;" name="grupo" id="grupo">
                     <option value="">Abra para selecionar</option>
                     <option value="admin">Administrador</option>
-                    <option value="ssma">Operador</option>
+                    <option value="ssma" >SSMA</option>
+                    <option value="head" >Gestor</option>
+                    <option value="lider">Líder</option>
                 </select>
 
             </div>
@@ -80,9 +82,13 @@
                     <td style="width: 20%;">{{$cell->name}}</td>
                     <td style="width: 30%;">{{$cell->email}}</td>
                     <td style="width: 10%; color: #0f6674; font-weight: 800;">{{ \App\Models\Unidade::where('id',$cell->unidade_id)->first()->descricao }}</td>
-                    <td style="width: 10%;">{{$cell->grupo}}</td>
+                    @if ($cell->grupo === 'admin')
+                        <td style="width: 10%; color: blueviolet; font-weight: 700;">{{ ucfirst( $cell->grupo ) }}</td>
+                    @else
+                        <td style="width: 10%;">{{ ucfirst( $cell->grupo ) }}</td>    
+                    @endif
                     <td style="width: 10%;">{{ ($cell->ativo===1)?'Sim':'Não' }}</td>
-                    <td style="width: 10%; color: darkslategray">
+                    <td style="width: 10%; color: darkslategray;">
                         <a href="/admin/edit/{{$cell->id}}" style="text-decoration: none;">
                             <span data-feather="edit"></span>
                         </a>

@@ -25,7 +25,7 @@ class EventoFactory extends Factory
         $users = User::count();
         return [
             #'unidade_id' => fake()->numberBetween(1,$unidades),
-            'unidade_id' => 4,
+            'unidade_id' => fake()->numberBetween(1,6),
             'tema_id' =>fake()->numberBetween(1, $temas),
             'user_id' => fake()->numberBetween(1, $users), 
             'dia' => fake()->dateTimeBetween('2023-02-01','2023-02-28'),
