@@ -27,16 +27,16 @@
         <input id="unidade_id" class="form-control mb-2 py-0" style="font-size: 12px;width: 150px; text-align: center;" type="text" name="dstema" disabled value="{{$unidades}}">
 
         <label for="cpf"><b>CPF:</b></label>
-        <input id="cpf" name="cpf" style="font-size: 12px;width: 150px;" class="form-control mb-2 py-0" type="text" maxlength="11" required>
+        <input id="cpf" name="cpf" style="font-size: 12px;width: 150px; height: 30px;" class="form-control mb-2 py-0" type="text" maxlength="11" required>
 
         <label for="cracha"><b>Crachá:</b></label>
-        <input id="cracha" name="cracha" style="font-size: 12px;width: 150px;" class="form-control mb-2 py-0" maxlength="15" type="text" required>
+        <input id="cracha" name="cracha" style="font-size: 12px;width: 150px; height: 30px;" class="form-control mb-2 py-0" maxlength="15" type="text" required>
 
         <label for="nome"><b>Nome:</b></label>
-        <input id="nome" name="nome" style="font-size: 12px;width: 600px;"class="form-control mb-2 py-0 " type="text" required>
+        <input id="nome" name="nome" style="font-size: 12px;width: 600px; height: 30px;"class="form-control mb-2 py-0 " type="text" required>
 
         <label for="email"><b>Email:</b></label>
-        <input id="email" name="email" style="font-size: 12px;width: 600px;" class="form-control mb-2 py-0" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+        <input id="email" name="email" style="font-size: 12px;width: 600px; height: 30px;" class="form-control mb-2 py-0" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
 
         <label for="ativo" class="mb-3"><b>Cadastro ativo ?</b></label>
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
