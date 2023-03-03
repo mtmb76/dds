@@ -53,13 +53,6 @@
                 <div id="container"></div>
             </div>
             <div class="tab-pane fade" id="grafico-unidade" role="tabpanel" aria-labelledby="grafico-unidade-tab" tabindex="0">
-                <style>
-                    #container {
-                    width: 70%;
-                    margin: 15px auto;
-                    text-align: center;
-                    }
-                </style>
                 <div id="container">
                     <h2>Participações Diárias de {{App\Models\Unidade::find(Auth()->user()->unidade_id)->descricao}} </h2>
                     <div>
@@ -68,13 +61,6 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="grafico-geral" role="tabpanel" aria-labelledby="grafico-unidade-tab" tabindex="0">
-                <style>
-                    #container {
-                    width: 70%;
-                    margin: 15px auto;
-                    text-align: center;
-                    }
-                </style>
                 <div id="container">
                     <h2>Participações Diárias Geral</h2>
                     <div>
@@ -84,6 +70,12 @@
             </div>
         </div>
     @endif
-
-
 @endsection
+
+<style>
+    #container {
+        width: 80%;
+        margin: 15px auto;
+        text-align: center;
+    }
+</style>

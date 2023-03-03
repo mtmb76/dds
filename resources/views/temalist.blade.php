@@ -31,7 +31,7 @@
                     <a href="{{route('tema.lista')}}"
                         <button style="width: 100px; height: 30px; font-size: 11px; font-weight: 500;" class="btn btn-warning" type="button">Atualizar</button>
                     </a>
-                    <a href="{{route('tema.novo')}}"
+                    <a href="{{route('tema.novo')}}">
                         <button style="width: 100px; height: 30px; font-size: 11px; font-weight: 500;" class="btn btn-success" type="button">Novo</button>
                     </a>
                 </li>
@@ -50,8 +50,8 @@
                 @if(! empty($temas) && $temas->count())
                     @foreach ($temas as $cell)
                         <tr>
-                            <td style="width: 10%;">{{$cell->id}}</td>
-                            <td style="width: 80%;">{{$cell->descricao}}</td>
+                            <td style="width: 10%; font-weight: 600;">{{$cell->id}}</td>
+                            <td style="width: 80%; ">{{ $cell->descricao }}</td>
                             <td style="width: 10%; color: darkslategray">
                                 <a href="/tema/view/{{$cell->id}}" style="text-decoration: none;">
                                     <span data-feather="eye"></span>

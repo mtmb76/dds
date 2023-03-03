@@ -70,7 +70,7 @@
             <ul class="navbar-nav px-0">
                 <li class="nav-item text-nowrap">
                     <button class="btn btn-success" style="width: 100px; height: 30px; font-size: 11px; font-weight: 500;"  type="submit" {{($disabled <> 0)?'disabled':''}}>Salvar</button>
-                    <a href="{{route('evento.lista')}}"
+                    <a href="{{route('evento.lista')}}">
                         <button class="btn btn-danger" style="width: 100px; height: 30px; font-size: 11px; font-weight: 500;"  type="button">Voltar</button>
                     </a>
                 </li>

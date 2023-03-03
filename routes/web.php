@@ -27,12 +27,12 @@ Route::get('/',[UserController::class, 'login']);
 Route::get('/login', [UserController::class, 'login']);
 Route::post('/autenticar',  [UserController::class, 'autenticar'])->middleware('ldap')->name('autenticar');
 Route::get('/logout', [UserController::class, 'logout'])->middleware('auth')->name('logout');
-Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware(['ldap','auth'])->name('dashboard');
+Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware(['auth'])->name('dashboard');
 
 
 ###################################################################
 
-Route::prefix('admin')->middleware('ldap','auth')->group(
+Route::prefix('admin')->middleware('auth')->group(
     function (){
         Route::get('/lista',[UserController::class,'lista'])->name('admin.lista');
         Route::get('/consulta/{page?}',[UserController::class, 'consulta'])->name('admin.consulta');

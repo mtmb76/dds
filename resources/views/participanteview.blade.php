@@ -43,7 +43,7 @@
                     <td>{{$campos->nome}}</td>
                     <td>{{$campos->cracha}}</td>
                     <td>{{$campos->email}}</td>
-                    <td>{{($campos->ativo =='0')?'Não':'Sim'; }}</td>
+                    <td>{{($campos->ativo =='0')?'Não':'Sim'}}</td>
 
                     <td>{{ date_format($campos->created_at,'d-m-Y H:i:s')}}</td>
                     <td>{{ date_format($campos->updated_at,'d-m-Y H:i:s')}}</td>
@@ -54,7 +54,7 @@
         <nav class="navbar navbar-light flex-md-nowrap p-0">
             <ul class="navbar-nav px-0">
                 <li class="nav-item text-nowrap">
-                    <a href="{{route('participante.lista')}}"
+                    <a href="{{route('participante.lista')}}">
                         <button class="btn btn-danger" style="width: 100px; height: 30px; font-size: 11px; font-weight: 500;"  type="button">Voltar</button>
                     </a>
                 </li>

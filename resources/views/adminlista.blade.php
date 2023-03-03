@@ -76,12 +76,12 @@
         @if(! empty($users) && $users->count())
             @foreach ($users as $cell)
                 <tr>
-                    <td style="width: 10%; font-weight: 800;">{{$cell->id}}</td>
+                    <td style="width: 5%; font-weight: 600;">{{$cell->id}}</td>
                     <td style="width: 20%;">{{$cell->name}}</td>
-                    <td style="width: 20%;">{{$cell->email}}</td>
-                    <td style="width: 20%; color: #0f6674; font-weight: 600; font-size: 12px;">{{ \App\Models\Unidade::where('id',$cell->unidade_id)->first()->descricao }}</td>
+                    <td style="width: 30%;">{{$cell->email}}</td>
+                    <td style="width: 15%; color: #0f6674; font-size: 12px;">{{ \App\Models\Unidade::where('id',$cell->unidade_id)->first()->descricao }}</td>
                     @if ($cell->grupo === 'admin')
-                        <td style="width: 10%; color: blueviolet; font-weight: 600;">{{ ucfirst( $cell->grupo ) }}</td>
+                        <td style="width: 10%; color: blueviolet;">{{ ucfirst( $cell->grupo ) }}</td>
                     @else
                         <td style="width: 10%;">{{ ucfirst( $cell->grupo ) }}</td>
                     @endif

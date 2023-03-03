@@ -23,13 +23,16 @@ class EventoController extends Controller
      */
     public function index(Request $request)
     {
-        $data_inicio = mktime(0, 0, 0, date('m'), 1, date('Y'));
-        $data_fim   = mktime(23, 59, 59, date('m'), date("t"), date('Y'));
-        $data_inicio =  date('Y-m-d', $data_inicio);
-        $data_fim   = date('Y-m-d', $data_fim);
-        $hoje    = date('Y-m-d');
+        $data_inicio    = mktime(0, 0, 0, date('m'), 1, date('Y'));
+        $data_fim       = mktime(23, 59, 59, date('m'), date("t"), date('Y'));
+        $data_inicio    = date('Y-m-d', $data_inicio);
+        $data_fim       = date('Y-m-d', $data_fim);
 
-        $eventos  = Evento::where('unidade_id', auth()->user()->unidade_id)->where('dia','>=',$hoje)->skip(100)->take(100)->Paginate(10);
+        $eventos  = Evento::whereBetween('dia',[$data_inicio, $data_fim])->
+                            where('unidade_id', auth()->user()->unidade_id)->
+                            skip(100)->
+                            take(100)->
+                            Paginate(10);
         $temas    = Tema::where('unidade_id', auth()->user()->unidade_id)->get();
         $unidades = Unidade::where('id', auth()->user()->unidade_id)->first();
         $unidades = $unidades->descricao;
@@ -45,12 +48,10 @@ class EventoController extends Controller
      */
     public function consulta(Request $request)
     {
-
-        $data_inicio = mktime(0, 0, 0, date('m'), 1, date('Y'));
-        $data_fim   = mktime(23, 59, 59, date('m'), date("t"), date('Y'));
-        $data_inicio =  date('Y-m-d', $data_inicio);
-        $data_fim   = date('Y-m-d', $data_fim);
-        #$hoje    = date('Y-m-d');
+        $data_inicio    = mktime(0, 0, 0, date('m'), 1, date('Y'));
+        $data_fim       = mktime(23, 59, 59, date('m'), date("t"), date('Y'));
+        $data_inicio    = date('Y-m-d', $data_inicio);
+        $data_fim       = date('Y-m-d', $data_fim);
 
         if($request->tema){
             $eventos = Evento::whereBetween('dia',[$request->diainicio, $request->diafim])->
@@ -69,7 +70,6 @@ class EventoController extends Controller
                             Paginate(10);
         }
 
-
         $temas    = Tema::where('unidade_id',auth()->user()->unidade_id)->get();
         $unidades = Unidade::where('id', auth()->user()->unidade_id)->first();
         $unidades = $unidades->descricao;
@@ -85,15 +85,14 @@ class EventoController extends Controller
      */
     public function open(Request $request)
     {
-        $data_inicio = mktime(0, 0, 0, date('m'), 1, date('Y'));
-        $data_fim   = mktime(23, 59, 59, date('m'), date("t"), date('Y'));
-        $data_inicio =  date('Y-m-d', $data_inicio);
-        $data_fim   = date('Y-m-d', $data_fim);
-        $hoje    = date('Y-m-d');
-
-        $temas    = Tema::where('unidade_id',auth()->user()->unidade_id)->get();
-        $unidades = Unidade::where('id', auth()->user()->unidade_id)->first();
-        $unidades = $unidades->descricao;
+        $data_inicio    = mktime(0, 0, 0, date('m'), 1, date('Y'));
+        $data_fim       = mktime(23, 59, 59, date('m'), date("t"), date('Y'));
+        $data_inicio    = date('Y-m-d', $data_inicio);
+        $data_fim       = date('Y-m-d', $data_fim);
+        $hoje           = date('Y-m-d');
+        $temas          = Tema::where('unidade_id',auth()->user()->unidade_id)->get();
+        $unidades       = Unidade::where('id', auth()->user()->unidade_id)->first();
+        $unidades       = $unidades->descricao;
         return view('evento', compact('unidades', 'hoje', 'data_inicio', 'data_fim', 'temas'));
     }
 
@@ -187,7 +186,6 @@ class EventoController extends Controller
 
     }
 
-
     /**
      * Summary of update
      * @param Request $request
@@ -238,9 +236,7 @@ class EventoController extends Controller
     public function view($id)
     {
         $hoje       = date('Y-m-d');
-
         $campos     = Evento::where('id', $id)->where('unidade_id', auth()->user()->unidade_id)->first();
-
         $temas      = Tema::where('id', $campos->tema_id)->
                             where('unidade_id', auth()->user()->unidade_id)->
                             first();
@@ -252,7 +248,7 @@ class EventoController extends Controller
         }
 
        #### relacionamento evento -> eventoparticipante -> participante 1:N hasManyThrough no model Evento
-       $participante = $campos->participantes()->orderBy('id', 'desc')->Paginate(20);
+       $participante = $campos->participantes()->orderBy('id', 'desc')->Paginate(18);
        ####################################################################
 
        $unidades = Unidade::where('id', auth()->user()->unidade_id)->first();
@@ -270,10 +266,6 @@ class EventoController extends Controller
     public function delete($id)
     {
         Evento::where('id', $id)->where('unidade_id', auth()->user()->unidade_id)->delete();
-
-        $unidades = Unidade::where('id', auth()->user()->unidade_id)->first();
-        $unidades = $unidades->descricao;
-
         return redirect()->intended('evento/lista');
     }
 

@@ -28,13 +28,13 @@
             <label style=" font-size: 12px;" for="nome"><b>Pesquisa pelo nome do participante:</b></label>
             <input id="nome" name="nome" style="width: 600px; font-size: 12px;" class="form-control form-control-light p-1" type="text" placeholder="Pesquise aqui pelo nome" aria-label="Pesquise aqui pelo nome">
 
-            <ul class="navbar-nav mt-3 mb-3" style="margin-left: 0px;">
+            <ul class="navbar-nav mt-3 mb-3 ml-0">
                 <li class="nav-item text-nowrap">
                     <button style="width: 100px; height: 30px; font-size: 11px; font-weight: 500;" class="btn btn-info" type="submit">Pesquisar</button>
                     <a href="{{route('participante.lista')}}"
                         <button style="width: 100px; height: 30px; font-size: 11px; font-weight: 500;"  class="btn btn-warning" type="button">Atualizar</button>
                     </a>
-                    <a href="{{route('participante.novo')}}"
+                    <a href="{{route('participante.novo')}}">
                         <button style="width: 100px; height: 30px; font-size: 11px; font-weight: 500;"  class="btn btn-success" type="button">Novo</button>
                     </a>
                 </li>
@@ -46,8 +46,8 @@
             <thead class="thead-dark">
                 <tr>
                     <th>#</th>
-                    <th>Nome</th>
                     <th>Crachá</th>
+                    <th>Nome</th>
                     <th>E-mail</th>
                     <th>Ativo</th>
                     <th>Ações</th>
@@ -57,11 +57,11 @@
                 @if(! empty($participantes) && $participantes->count())
                     @foreach ($participantes as $cell)
                         <tr>
-                            <td style="width: 5%;">{{$cell->id}}</td>
-                            <td style="width: 50%;">{{$cell->nome}}</td>
+                            <td style="width: 10%; font-weight: 600;">{{$cell->id}}</td>
                             <td style="width: 10%;">{{$cell->cracha}}</td>
-                            <td style="width: 20%;">{{$cell->email}}</td>
-                            <td style="width: 5%;">{{ ($cell->ativo =='0')?'Não':'Sim'; }}</td>
+                            <td style="width: 30%;">{{$cell->nome}}</td>
+                            <td style="width: 30%;">{{$cell->email}}</td>
+                            <td style="width: 5%;">{{ ($cell->ativo =='0')?'Não':'Sim'}}</td>
 
                             <td style="width: 10%; color: darkslategray">
                                 <a href="/participante/view/{{$cell->id}}" style="text-decoration: none;">

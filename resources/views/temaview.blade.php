@@ -47,7 +47,7 @@
         <nav class="navbar navbar-light flex-md-nowrap p-0">
             <ul class="navbar-nav px-0">
                 <li class="nav-item text-nowrap">
-                    <a href="{{route('tema.lista')}}"
+                    <a href="{{route('tema.lista')}}">
                         <button class="btn btn-danger"  style="width: 100px; height: 30px; font-size: 11px; font-weight: 500;" type="button">Voltar</button>
                     </a>
                 </li>
