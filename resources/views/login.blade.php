@@ -8,11 +8,7 @@
 
     <div class="box border-opacity-10 border-info align-items-center pt-2" style="background-color: rgba(255,255,255,0.07);">
 
-        <!--<span class="font-weight-lighter text-white-50" style="font: 800 30px 'Arial Black'; -webkit-text-fill-color: transparent; -webkit-text-stroke: 1px;">
-            Credenciais
-        </span>-->
-
-        <h5 class="text-opacity-50 text-white">Credenciais</h5>
+        <h5 class="text-opacity text-white">Credenciais</h5>
 
         <form action="{{route('autenticar')}}" method="POST" name="loginFrm">
 
@@ -22,21 +18,21 @@
 
           <!-- Email input -->
           <div class="form-outline mb-2">
-            <label class="form-label font-weight-normal text-white-50" style="font-weight: bold; font-size: 12px;" for="email">E-mail</label>
+            <label class="form-label font-weight-normal text-white" style="font-weight: bold; font-size: 12px;" for="email">E-mail</label>
             <input type="email" id="email" name="email" class="form-control form-control-sm"
               placeholder="Informe uma conta de usuário válida" style="height: 25px;" value="{{old('email')}}" required/>
           </div>
 
           <!-- Password input -->
           <div class="form-outline mb-2">
-            <label class="form-label font-weight-normal text-white-50" style="font-weight: bold; font-size: 12px;" for="paswword">Senha</label>
+            <label class="form-label font-weight-normal text-white" style="font-weight: bold; font-size: 12px;" for="paswword">Senha</label>
             <input type="password" id="paswword" name="password" class="form-control form-control-sm"
               placeholder="Informe sua senha" style="height: 25px;" value="{{old('password')}}" required/>
           </div>
 
           <!-- Terminal input -->
           <div class="form-outline mb-3">
-            <label class="form-label font-weight-normal text-white-50" style="font-weight: bold; font-size: 12px;" for="unidade">Unidade</label>
+            <label class="form-label font-weight-normal text-white" style="font-weight: bold; font-size: 12px;" for="unidade">Unidade</label>
             <select name="unidade_id" id="unidade_id" class="form-control form-control-sm" style="font-size: 12px; height: 25px;" required>
               <option value=""></option>
               @foreach ($terminais as $item)
@@ -52,7 +48,7 @@
           <!-- Checkbox -->
           <div class="form-outline mb-0">
             <input class="form-check-input me-2" type="checkbox" value="1" name="remember" id="remember" checked/>
-            <label style="font-size: 12px;" class="form-check-label" for="remember">
+            <label style="font-size: 12px; color: white;" class="form-check-label" for="remember">
               Lembrar minhas credenciais
             </label>
           </div>
@@ -72,7 +68,7 @@
         width: 100vw;
         height: 100vh;
         background-size: cover;
-        background: url('img/bg.png') no-repeat center;
+        background: url('img/abstrato.png') no-repeat center;
         opacity: 0.9;
         z-index: -1;
         display: flex;

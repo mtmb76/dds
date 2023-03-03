@@ -17,11 +17,15 @@
 </head>
 
     <body>
+
         <nav class="navbar navbar-dark fixed-top py-0 shadow" style="background-color: rgba(27,51,73,0.47);">
             <a class="navbar-brand col-sm-3 col-md-2 text-center text-white-50" style="padding-left: 5px; font-weight: 700; font-size: 22px;" href="{{route('dashboard')}}">
                 <img src="{{URL::asset('img/logo.png')}}" class="img-fluid" alt="localfrio">
             </a>
-            <span id="time" class="p-1 text-white-50 font-weight-bolder" style="font-size: 12px; font-weight: 600; margin-right: 1%;"></span>
+            <span class="p-1 text-white font-weight-bolder text-opacity-50" style="font-size: 20px; font-weight: 600; margin-right: 1%;"> DIÁLOGO DIÁRIO DE SEGUNRANÇA </span>
+
+            <!--<span id="time" class="p-1 text-white font-weight-bolder" style="font-size: 12px; font-weight: 600; margin-right: 1%;"></span>-->
+
         </nav>
 
         @auth
@@ -126,7 +130,7 @@
                                 </a>
                             </h6>
 
-                            <!--<div class="position-relative float-none bg-secondary bg-opacity-50 rounded-2 shadow border-2 border-dark" style="margin-top: 50px; left: 20%; width: 100px; height: 100px;">
+                            <!--<div class="position-relative float-none border-2 border-dark" style="margin-top: 50px; left: 20%; width: 100px; height: 100px;">
                                 <img src="{{URL::asset('img/dds.png')}}" class="img-fluid" style="width: 100px; height: 100px;" alt="localfrio">
                             </div>-->
 
