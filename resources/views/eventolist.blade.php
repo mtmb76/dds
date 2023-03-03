@@ -11,9 +11,7 @@
 @endsection
 
 @section('form.title')
-    <nav class="navbar navbar-light bg-light flex-md-nowrap p-0">
-      <h4>Listagem de Eventos</h4>
-    </nav>
+  Listagem de Eventos
 @endsection
 
 @section('auth.content')
@@ -94,7 +92,7 @@
                     <th>Ações</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="font-size: 12px;">
                 @if(! empty($eventos) && $eventos->count())
                     @foreach ($eventos as $evento)
                         <tr>
@@ -102,22 +100,22 @@
                             <td style="width: 10%;">{{  date('d-m-Y',strtotime($evento->dia)) }}</td>
 
                             @if($evento->turno == 1)
-                               <td style="width: 10%;">Primeiro</td>
+                               <td style="width: 5%;">Primeiro</td>
                             @elseif($evento->turno == 2)
-                               <td style="width: 10%;">Segundo</td>
+                               <td style="width: 5%;">Segundo</td>
                             @else
-                               <td style="width: 10%;">Terceiro</td>
+                               <td style="width: 5%;">Terceiro</td>
                             @endif
 
                             @if($evento->area == 'A')
-                               <td style="width: 10%;">Administrativo</td>
+                               <td style="width: 5%;">Administrativo</td>
                             @elseif($evento->area == 'O')
-                               <td style="width: 10%;">Operacional</td>
+                               <td style="width: 5%;">Operacional</td>
                             @else
-                               <td style="width: 10%;"></td>
+                               <td style="width: 5%;"></td>
                             @endif
 
-                            <td style="width: 40%; font-weight: 800; color:cadetblue;">
+                            <td style="width: 60%; font-weight: 500; font-size: 12px; color:cadetblue;">
                                 @foreach($temas as $tema)
                                     {{($tema->id == $evento->tema_id)?$tema->descricao:''}}
                                 @endforeach
@@ -151,19 +149,6 @@
             </tbody>
         </table>
 
-        <nav aria-label="...">
-            <ul class="pagination w-100" style=" font-size: 12px;">
-                <li class="page-item"><a class="page-link" href="{{url('evento/consulta?page=1')}}">1</a></li>
-                <li class="page-item"><a class="page-link" href="{{url('evento/consulta?page=2')}}">2</a></li>
-                <li class="page-item"><a class="page-link" href="{{url('evento/consulta?page=3')}}">3</a></li>
-                <li class="page-item"><a class="page-link" href="{{url('evento/consulta?page=4')}}">4</a></li>
-                <li class="page-item"><a class="page-link" href="{{url('evento/consulta?page=5')}}">5</a></li>
-                <li class="page-item"><a class="page-link" href="{{url('evento/consulta?page=6')}}">6</a></li>
-                <li class="page-item"><a class="page-link" href="{{url('evento/consulta?page=7')}}">7</a></li>
-                <li class="page-item"><a class="page-link" href="{{url('evento/consulta?page=8')}}">8</a></li>
-                <li class="page-item"><a class="page-link" href="{{url('evento/consulta?page=9')}}">9</a></li>
-                <li class="page-item"><a class="page-link" href="{{url('evento/consulta?page=10')}}">10</a></li>
-            </ul>
-        </nav>
+        {{$eventos->withQueryString()->links()}}
 
 @endsection

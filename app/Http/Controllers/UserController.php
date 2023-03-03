@@ -117,7 +117,7 @@ class UserController extends Controller
             }else{
                 return view('dashboard', compact('unidades', 'userid'));
             }
-            
+
 
         } else {
             return back()->withErrors([
@@ -159,7 +159,7 @@ class UserController extends Controller
      */
     public function lista(Request $request){
 
-        $users      = User::all();
+        $users      = User::Paginate(10);
 
         $nomeUnidade= Unidade::where('id',Auth()->user()->unidade_id)->first('descricao');
 
@@ -284,16 +284,16 @@ class UserController extends Controller
         $ativos         = Participante::where('ativo','1')->
                                          where('unidade_id',auth()->user()->unidade_id)->count();
 
-        for ($i=1; $i <= $qtdDiasMes; $i++) { 
+        for ($i=1; $i <= $qtdDiasMes; $i++) {
             $dias = $dias . "'".$i."',";
-            $qtd  = DB::scalar('SELECT COUNT(*) AS participacoes 
-                                  FROM eventoparticipantes a 
-                                 WHERE a.evento_id IN( 
-                                                      SELECT id 
-                                                        FROM eventos 
-                                                       WHERE dia = :dia 
+            $qtd  = DB::scalar('SELECT COUNT(*) AS participacoes
+                                  FROM eventoparticipantes a
+                                 WHERE a.evento_id IN(
+                                                      SELECT id
+                                                        FROM eventos
+                                                       WHERE dia = :dia
                                                          AND unidade_id = :unidade_id)'
-                                                        ,[ 'dia' => date('Y-m-'). str_pad($i,2,'0',STR_PAD_LEFT), 
+                                                        ,[ 'dia' => date('Y-m-'). str_pad($i,2,'0',STR_PAD_LEFT),
                                                         'unidade_id' => auth()->user()->unidade_id ]);
             $participacoes .= $qtd . ',';
             $ausencias .= ($ativos - $qtd) . ',';
@@ -314,11 +314,11 @@ class UserController extends Controller
                         backgroundColor: "#22a32f",
                     },
                     {
-                        label: "Ausências", 
+                        label: "Ausências",
                         data: ['.$ausencias.'],
                         backgroundColor: "#dbd96b",
                     },
-            
+
                     ],
                 },
                 });
@@ -361,13 +361,13 @@ class UserController extends Controller
         $qtdDiasMes     = date("t");
         $ativos         = Participante::where('ativo','1')->count();
 
-        for ($i=1; $i <= $qtdDiasMes; $i++) { 
+        for ($i=1; $i <= $qtdDiasMes; $i++) {
             $dias = $dias . "'".$i."',";
-            $qtd  = DB::scalar('SELECT COUNT(*) AS participacoes 
-                                  FROM eventoparticipantes a 
-                                 WHERE a.evento_id IN( 
-                                                      SELECT id 
-                                                        FROM eventos 
+            $qtd  = DB::scalar('SELECT COUNT(*) AS participacoes
+                                  FROM eventoparticipantes a
+                                 WHERE a.evento_id IN(
+                                                      SELECT id
+                                                        FROM eventos
                                                        WHERE dia = :dia)'
                                                         ,[ 'dia' => date('Y-m-'). str_pad($i,2,'0',STR_PAD_LEFT)]);
             $participacoes .= $qtd . ',';
@@ -389,11 +389,11 @@ class UserController extends Controller
                         backgroundColor: "#22a32f",
                     },
                     {
-                        label: "Ausências", 
+                        label: "Ausências",
                         data: ['.$ausencias.'],
                         backgroundColor: "#dbd96b",
                     },
-            
+
                     ],
                 },
                 });

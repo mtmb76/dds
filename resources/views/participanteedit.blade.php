@@ -13,9 +13,7 @@
 @endsection
 
 @section('form.title')
-    <nav class="navbar navbar-light bg-light flex-md-nowrap p-0">
-      <h4>Edição do Participante # {{$campos->id}} </h4>
-    </nav>
+  Edição do Participante # {{$campos->id}}
 @endsection
 
 @section('auth.content')
@@ -26,21 +24,23 @@
 
     <div class="form-group">
         <label for="unidade_id"><b>Unidade:</b></label>
-        <input id="unidade_id" class="form-control mb-2 py-0" style="font-size: 12px; width: 150px; text-align: center;" type="text" name="unidade_id" disabled value="{{$unidades}}">
+        <input id="unidade_id" class="form-control mb-2 py-0 text-center" style="font-size: 12px; width: 150px;  height: 30px;text-align: center;" type="text" name="unidade_id" disabled value="{{$unidades}}">
 
         <label for="cpf"><b>CPF:</b></label>
-        <input value="{{$campos->cpf}}" id="cpf" name="cpf" style="font-size: 12px;width: 150px;" class="form-control mb-2 py-0" type="text" maxlength="11" disabled>
+        <input value="{{$campos->cpf}}"  id="cpf" name="cpf" style="font-size: 12px;width: 150px; height: 30px;" class="form-control mb-2 py-0 text-center" type="password" maxlength="11" disabled>
+        <input type="button" style="width: 150px; height: 30px; font-size: 11px; font-weight: 500;" class="border-opacity-50 text-left btn btn-outline-dark mb-2" value="Exibir CPF" onclick="cpfShow()">
+        <br>
 
         <label for="cracha"><b>Crachá:</b></label>
-        <input value="{{$campos->cracha}}" id="cracha" name="cracha" style="font-size: 12px;width: 150px;" class="form-control mb-2 py-0" maxlength="15" type="text" required>
+        <input value="{{$campos->cracha}}" id="cracha" name="cracha" style="font-size: 12px;width: 150px; height: 30px;" class="form-control mb-2 py-0 text-center" maxlength="15" type="text" required>
 
         <label for="nome"><b>Nome:</b></label>
-        <input value="{{$campos->nome}}" id="nome" name="nome" style="font-size: 12px;width: 600px;"class="form-control mb-2 py-0 " type="text" required>
+        <input value="{{$campos->nome}}" id="nome" name="nome" style="font-size: 12px;width: 600px; height: 30px;"class="form-control mb-2 py-0 " type="text" required>
 
         <label for="email"><b>Email:</b></label>
-        <input value="{{$campos->email}}" id="email" name="email" style="font-size: 12px;width: 600px;" class="form-control mb-2 py-0" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+        <input value="{{$campos->email}}" id="email" name="email" style="font-size: 12px;width: 600px; height: 30px;" class="form-control mb-2 py-0" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
 
-        <label for="ativo" class="mb-3"><b>Cadastro ativo ?</b></label>
+        <label for="ativo" class="mb-3 text-black-100"><b>Cadastro ativo ?</b></label>
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <label class="btn btn-light">
                 <input type="radio" id="ativo" name="ativo" value="1" {{($campos->ativo == 1)?'checked':''}}> Sim
@@ -51,7 +51,7 @@
         <input name="id" type="hidden" value="{{$campos->id}}">
         <input name="cpf" type="hidden" value="{{$campos->cpf}}">
 
-        <nav class="navbar navbar-light bg-light flex-md-nowrap p-0">
+        <nav class="navbar navbar-light flex-md-nowrap p-0">
             <ul class="navbar-nav px-0">
                 <li class="nav-item text-nowrap">
                     <button class="btn btn-success"  style="width: 100px; height: 30px; font-size: 11px; font-weight: 500;"  type="submit">Salvar</button>
@@ -68,6 +68,16 @@
 @endsection
 
 <script>
+
+    function cpfShow() {
+        var x = document.getElementById("cpf");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+
     function mascara(i){
 
     var v = i.value;

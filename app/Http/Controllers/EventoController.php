@@ -252,7 +252,7 @@ class EventoController extends Controller
         }
 
        #### relacionamento evento -> eventoparticipante -> participante 1:N hasManyThrough no model Evento
-       $participante = $campos->participantes()->orderBy('id', 'desc')->Paginate(10);
+       $participante = $campos->participantes()->orderBy('id', 'desc')->Paginate(20);
        ####################################################################
 
        $unidades = Unidade::where('id', auth()->user()->unidade_id)->first();

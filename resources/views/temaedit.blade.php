@@ -13,9 +13,7 @@
 @endsection
 
 @section('form.title')
-    <nav class="navbar navbar-light bg-light flex-md-nowrap p-0">
-      <h4>Edição do Tema #{{$campos->id}}</h4>
-    </nav>
+    Edição do Tema #{{$campos->id}}
 @endsection
 
 @section('auth.content')
@@ -36,7 +34,7 @@
 
         <input name="id" type="hidden" value="{{$campos->id}}">
 
-        <nav class="navbar navbar-light bg-light flex-md-nowrap p-0 mt-3">
+        <nav class="navbar navbar-light flex-md-nowrap p-0 mt-3">
             <ul class="navbar-nav px-0">
                 <li class="nav-item text-nowrap">
                     <button class="btn btn-success" style="width: 100px; height: 30px; font-size: 11px; font-weight: 500;" type="submit">Salvar</button>

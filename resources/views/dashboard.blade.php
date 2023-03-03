@@ -20,7 +20,7 @@
 @endsection
 
 @section('form.title')
-   <h5>Dashboard de {{Auth()->user()->name}}</h5>
+   Dashboard de {{Auth()->user()->name}}
 @endsection
 
 @section('auth.content')
@@ -28,24 +28,24 @@
     @if(Auth()->user()->grupo !== 'lider')
             <ul class="nav nav-tabs"  id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active " id="calendario-tab" data-bs-toggle="tab" data-bs-target="#calendario" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"> 
-                        <span data-feather="corner-left-down"></span> 
+                    <button class="nav-link active " id="calendario-tab" data-bs-toggle="tab" data-bs-target="#calendario" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
+                        <span data-feather="corner-left-down"></span>
                         &nbsp; Eventos - Agenda
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="grafico-unidade-tab" data-bs-toggle="tab" data-bs-target="#grafico-unidade" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
-                        <span data-feather="trending-up"></span> 
+                        <span data-feather="trending-up"></span>
                         &nbsp; Gráfico - Unidade
                     </button>
                 </li>
                 @if (Auth()->user()->grupo !== 'ssma')
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="grafico-geral-tab" data-bs-toggle="tab" data-bs-target="#grafico-geral" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
-                            <span data-feather="bar-chart"></span> 
+                            <span data-feather="bar-chart"></span>
                             &nbsp; Gráfico - Geral
                         </button>
-                    </li>                
+                    </li>
                 @endif
         </ul>
         <div class="tab-content" id="myTabContent">
@@ -81,7 +81,7 @@
                         <canvas id="grafico_participacoes_geral"></canvas>
                     </div>
                 </div>
-            </div>        
+            </div>
         </div>
     @endif
 

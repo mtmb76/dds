@@ -11,9 +11,7 @@
 @endsection
 
 @section('form.title')
-    <nav class="navbar navbar-light bg-light flex-md-nowrap p-0">
-      <h4>Cadastro de Temas</h4>
-    </nav>
+    Cadastro de Temas
 @endsection
 
 @section('auth.content')
@@ -35,7 +33,7 @@
         <label style="font-size: 12px;" for="arquivo"><b>Arquivo da Apresentação:</b></label>
         <input style="width: 600px; font-size: 12px; height: 30px;" type="file" class="form-control" id="arquivo" name="arquivo">
 
-        <nav class="navbar navbar-light bg-light flex-md-nowrap mt-3 p-0">
+        <nav class="navbar navbar-light flex-md-nowrap mt-3 p-0">
             <ul class="navbar-nav px-0">
                 <li class="nav-item text-nowrap">
                     <button class="btn btn-success" style="width: 100px; height: 30px; font-size: 11px; font-weight: 500;"type="submit">Salvar</button>

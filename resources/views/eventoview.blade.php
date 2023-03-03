@@ -11,14 +11,12 @@
 @endsection
 
 @section('form.title')
-    <nav class="navbar navbar-light flex-md-nowrap p-0">
-      <h4>Consulta do Evento #{{$campos->id}}</h4>
-    </nav>
+  Consulta do Evento #{{$campos->id}}
 @endsection
 
 @section('auth.content')
 
-<div class="container">
+<div class="container-fluid">
 
     <div class="row w-100">
 
@@ -116,8 +114,8 @@
             </nav>
         </div>
 
-        <div class="col col-sm-7  sm-1 shadow py-1" style=" border-radius: 10px; height: 70%;">
-            <table class="table table-striped table-hover table-sm " style="font-size: 10px;">
+        <div class="col col-sm-7  sm-1 shadow-none py-1" style=" border-radius: 10px; height: 70%;">
+            <table class="table  table-hover d-table table-sm " style="font-size: 12px;">
                 <thead class="thead-dark">
                     <tr>
                         <th>#</th>
@@ -153,15 +151,7 @@
                     @endif
                 </tbody>
             </table>
-            <nav aria-label="...">
-                <ul class="pagination w-100" style=" font-size: 12px;">
-                    <li class="page-item"><a class="page-link" href="{{url('evento/view/'.$campos->id.'?page=1')}}">1</a></li>
-                    <li class="page-item"><a class="page-link" href="{{url('evento/view/'.$campos->id.'?page=2')}}">2</a></li>
-                    <li class="page-item"><a class="page-link" href="{{url('evento/view/'.$campos->id.'?page=3')}}">3</a></li>
-                    <li class="page-item"><a class="page-link" href="{{url('evento/view/'.$campos->id.'?page=4')}}">4</a></li>
-                    <li class="page-item"><a class="page-link" href="{{url('evento/view/'.$campos->id.'?page=5')}}">5</a></li>
-                </ul>
-            </nav>
+            {{$participante->withQueryString()->links()}}
         </div>
     </div>
 

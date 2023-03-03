@@ -11,14 +11,12 @@
 @endsection
 
 @section('form.title')
-    <nav class="navbar navbar-light bg-light flex-md-nowrap p-0">
-        <h4>Listagem de Usuários do Sistema</h4>
-    </nav>
+    Listagem de Usuários do Sistema
 @endsection
 
 @section('auth.content')
 
-    <form class="form-control ml-0" style="border: 0px transparent;" action="{{route('admin.consulta')}}" name="frmAdminConsulta" method="GET">
+    <form class="form-control ml-0" style="border: 0 transparent;" action="{{route('admin.consulta')}}" name="frmAdminConsulta" method="GET">
 
         @csrf
 
@@ -28,7 +26,7 @@
         <input id="name" name="name" style="width: 600px; font-size: 12px;" class="form-control form-control-light p-1" type="text" placeholder="Pesquise aqui pelo nome" aria-label="Pesquise aqui pelo nome">
 
         <div class="row">
-            <div class="col-md-1 d-none d-md-block bg-light" style="width: 245px;">
+            <div class="col-md-1 d-none d-md-block" style="width: 245px;">
 
                 <label  style=" font-size: 12px;" for="grupo"><b>Pesquisa pelo grupo:</b></label>
                 <select class="form-select form-select-sm" style="width: 200px; font-size: 12px;" name="grupo" id="grupo">
@@ -40,7 +38,7 @@
                 </select>
 
             </div>
-            <div class="col-md-1 d-none d-md-block bg-light" style="width: 220px;">
+            <div class="col-md-1 d-none d-md-block" style="width: 220px;">
 
                 <label style=" font-size: 12px;" for="ativo"><b>Pesquisa pelo Status:</b></label>
                 <select class="form-select form-select-sm" style="width: 200px; margin-bottom: 10px; font-size: 12px;" name="ativo" id="ativo">
@@ -55,7 +53,7 @@
         <ul class="navbar-nav mt-3 mb-3" style="margin-left: 0px;">
             <li class="nav-item text-nowrap">
                 <button style="width: 100px; height: 30px; font-size: 11px; font-weight: 500;" class="btn btn-info" type="submit">Pesquisar</button>
-                <a href="{{route('admin.lista')}}"
+                <a href="{{route('admin.lista')}}">
                     <button style="width: 100px; height: 30px; font-size: 11px; font-weight: 500;" class="btn btn-warning" type="button">Atualizar</button>
                 </a>
             </li>
@@ -80,12 +78,12 @@
                 <tr>
                     <td style="width: 10%; font-weight: 800;">{{$cell->id}}</td>
                     <td style="width: 20%;">{{$cell->name}}</td>
-                    <td style="width: 30%;">{{$cell->email}}</td>
-                    <td style="width: 10%; color: #0f6674; font-weight: 800;">{{ \App\Models\Unidade::where('id',$cell->unidade_id)->first()->descricao }}</td>
+                    <td style="width: 20%;">{{$cell->email}}</td>
+                    <td style="width: 20%; color: #0f6674; font-weight: 600; font-size: 12px;">{{ \App\Models\Unidade::where('id',$cell->unidade_id)->first()->descricao }}</td>
                     @if ($cell->grupo === 'admin')
-                        <td style="width: 10%; color: blueviolet; font-weight: 700;">{{ ucfirst( $cell->grupo ) }}</td>
+                        <td style="width: 10%; color: blueviolet; font-weight: 600;">{{ ucfirst( $cell->grupo ) }}</td>
                     @else
-                        <td style="width: 10%;">{{ ucfirst( $cell->grupo ) }}</td>    
+                        <td style="width: 10%;">{{ ucfirst( $cell->grupo ) }}</td>
                     @endif
                     <td style="width: 10%;">{{ ($cell->ativo===1)?'Sim':'Não' }}</td>
                     <td style="width: 10%; color: darkslategray;">
@@ -115,19 +113,6 @@
         </tbody>
     </table>
 
-    <nav aria-label="...">
-        <ul class="pagination w-100" style=" font-size: 12px;">
-            <li class="page-item"><a class="page-link" href="{{url('admin/consulta?page=1')}}">1</a></li>
-            <li class="page-item"><a class="page-link" href="{{url('admin/consulta?page=2')}}">2</a></li>
-            <li class="page-item"><a class="page-link" href="{{url('admin/consulta?page=3')}}">3</a></li>
-            <li class="page-item"><a class="page-link" href="{{url('admin/consulta?page=4')}}">4</a></li>
-            <li class="page-item"><a class="page-link" href="{{url('admin/consulta?page=5')}}">5</a></li>
-            <li class="page-item"><a class="page-link" href="{{url('admin/consulta?page=6')}}">6</a></li>
-            <li class="page-item"><a class="page-link" href="{{url('admin/consulta?page=7')}}">7</a></li>
-            <li class="page-item"><a class="page-link" href="{{url('admin/consulta?page=8')}}">8</a></li>
-            <li class="page-item"><a class="page-link" href="{{url('admin/consulta?page=9')}}">9</a></li>
-            <li class="page-item"><a class="page-link" href="{{url('admin/consulta?page=10')}}">10</a></li>
-        </ul>
-    </nav>
+    {{$users->withQueryString()->links()}}
 
 @endsection

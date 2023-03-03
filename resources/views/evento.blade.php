@@ -11,9 +11,7 @@
 @endsection
 
 @section('form.title')
-    <nav class="navbar navbar-light bg-light flex-md-nowrap p-0">
-      <h4>Cadastro de Eventos</h4>
-    </nav>
+      Cadastro de Eventos
 @endsection
 
 @section('auth.content')

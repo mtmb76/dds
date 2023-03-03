@@ -11,9 +11,7 @@
 @endsection
 
 @section('form.title')
-    <nav class="navbar navbar-light bg-light flex-md-nowrap p-0">
-      <h4>Cadastro de Participantes</h4>
-    </nav>
+  Cadastro de Participantes
 @endsection
 
 @section('auth.content')
@@ -24,13 +22,13 @@
 
     <div class="form-group">
         <label for="area"><b>Unidade:</b></label>
-        <input id="unidade_id" class="form-control mb-2 py-0" style="font-size: 12px;width: 150px; text-align: center;" type="text" name="dstema" disabled value="{{$unidades}}">
+        <input id="unidade_id" class="form-control mb-2 py-0" style="font-size: 12px;width: 150px; text-align: center; height: 30px;" type="text" name="dstema" disabled value="{{$unidades}}">
 
         <label for="cpf"><b>CPF:</b></label>
-        <input id="cpf" name="cpf" style="font-size: 12px;width: 150px; height: 30px;" class="form-control mb-2 py-0" type="text" maxlength="11" required>
+        <input id="cpf" name="cpf" style="font-size: 12px;width: 150px; height: 30px;" class="form-control mb-2 py-0 text-center" type="text" maxlength="11" required>
 
         <label for="cracha"><b>Crachá:</b></label>
-        <input id="cracha" name="cracha" style="font-size: 12px;width: 150px; height: 30px;" class="form-control mb-2 py-0" maxlength="15" type="text" required>
+        <input id="cracha" name="cracha" style="font-size: 12px;width: 150px; height: 30px;" class="form-control mb-2 py-0 text-center" maxlength="15" type="text" required>
 
         <label for="nome"><b>Nome:</b></label>
         <input id="nome" name="nome" style="font-size: 12px;width: 600px; height: 30px;"class="form-control mb-2 py-0 " type="text" required>
@@ -46,7 +44,7 @@
             </label>
         </div>
 
-        <nav class="navbar navbar-light bg-light flex-md-nowrap p-0">
+        <nav class="navbar navbar-light flex-md-nowrap p-0">
             <ul class="navbar-nav px-0">
                 <li class="nav-item text-nowrap">
                     <button class="btn btn-success" style="width: 100px; height: 30px; font-size: 11px; font-weight: 500;"  type="submit">Salvar</button>

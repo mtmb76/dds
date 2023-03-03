@@ -13,9 +13,7 @@
 @endsection
 
 @section('form.title')
-    <nav class="navbar navbar-light bg-light flex-md-nowrap p-0">
-      <h4>Edição do Evento #{{$campos->id}} </h4>
-    </nav>
+  Edição do Evento #{{$campos->id}}
 @endsection
 
 @section('auth.content')

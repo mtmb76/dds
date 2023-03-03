@@ -11,9 +11,7 @@
 @endsection
 
 @section('form.title')
-    <nav class="navbar navbar-light bg-light flex-md-nowrap p-0">
-      <h4>Listagem de Temas </h4>
-    </nav>
+    Listagem de Temas
 @endsection
 
 @section('auth.content')
@@ -84,21 +82,8 @@
                 @endif
             </tbody>
         </table>
-        
-        <nav aria-label="...">
-            <ul class="pagination w-100" style=" font-size: 12px;">
-                <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=1')}}">1</a></li>
-                <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=2')}}">2</a></li>
-                <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=3')}}">3</a></li>
-                <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=4')}}">4</a></li>
-                <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=5')}}">5</a></li>
-                <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=6')}}">6</a></li>
-                <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=7')}}">7</a></li>
-                <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=8')}}">8</a></li>
-                <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=9')}}">9</a></li>
-                <li class="page-item"><a class="page-link" href="{{url('tema/consulta?page=10')}}">10</a></li>
-            </ul>
-        </nav>
+
+        {{$temas->withQueryString()->links()}}
 
         @if(Auth()->user()->grupo == 'admin')
 

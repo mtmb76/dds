@@ -14,9 +14,7 @@
 @endsection
 
 @section('form.title')
-    <nav class="navbar navbar-light bg-light flex-md-nowrap p-0">
-      <h4>Consulta do Tema #{{$campos->id}}</h4>
-    </nav>
+    Consulta do Tema #{{$campos->id}}
 @endsection
 
 @section('auth.content')
@@ -46,7 +44,7 @@
             </tbody>
         </table>
 
-        <nav class="navbar navbar-light bg-light flex-md-nowrap p-0">
+        <nav class="navbar navbar-light flex-md-nowrap p-0">
             <ul class="navbar-nav px-0">
                 <li class="nav-item text-nowrap">
                     <a href="{{route('tema.lista')}}"
