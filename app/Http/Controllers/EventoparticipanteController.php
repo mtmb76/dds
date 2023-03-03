@@ -65,7 +65,7 @@ class EventoparticipanteController extends Controller
                                        ',['dia'=>$evento->dia, 'participante_id'=>$participante->id]);
         if($eventoDia !== 0){
             return back()->withErrors([
-                'Error' => 'Participante já registrou presença em um DDS hoje!',
+                'Error' => 'Participante já registrou presença em um DDS neste dia!',
             ])->onlyInput('Error');
         }else{
             $evento->eventoparticipante()->create([
