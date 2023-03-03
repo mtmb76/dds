@@ -34,6 +34,7 @@
                         <div class="sidebar-sticky border-0">
 
                             <ul class="nav flex-column">
+
                                 @if(Auth()->user()->grupo !== 'lider')
                                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                                     <span style="font-size: 10px; font-weight: 800;">Meu Dashboard</span>
@@ -124,6 +125,11 @@
                                     <span data-feather="log-out" style="color: red;"></span>
                                 </a>
                             </h6>
+
+                            <!--<div class="position-relative float-none bg-secondary bg-opacity-50 rounded-2 shadow border-2 border-dark" style="margin-top: 50px; left: 20%; width: 100px; height: 100px;">
+                                <img src="{{URL::asset('img/dds.png')}}" class="img-fluid" style="width: 100px; height: 100px;" alt="localfrio">
+                            </div>-->
+
                         </div>
                     </nav>
                 </div>
