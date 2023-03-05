@@ -20,7 +20,7 @@
 
         <nav class="navbar navbar-dark fixed-top py-0 shadow" style="background-color: rgba(27,51,73,0.47);">
             <a class="navbar-brand col-sm-3 col-md-2 text-center text-white-50" style="padding-left: 5px; font-weight: 700; font-size: 22px;" href="{{route('dashboard')}}">
-                <img src="{{URL::asset('img/logo.png')}}" style="max-height: 70px; max-width: 160px;" class="img-fluid" alt="localfrio">
+                <img src="{{URL::asset('img/logo.png')}}" style="max-height: 70px; max-width: 160px;" class="align-middle img-fluid" alt="localfrio">
             </a>
             <span class="p-1 text-white font-weight-bolder text-opacity-50" style="font-size: 20px; font-weight: 600; margin-right: 1%;"> DIÁLOGO DIÁRIO DE SEGURANÇA </span>
 
