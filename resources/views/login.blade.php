@@ -33,7 +33,7 @@
           <!-- Terminal input -->
           <div class="form-outline mb-3">
             <label class="form-label font-weight-normal text-white" style="font-weight: bold; font-size: 12px;" for="unidade">Unidade</label>
-            <select name="unidade_id" id="unidade_id" class="form-control form-control-sm" style="font-size: 12px; height: 25px;" required>
+            <select name="unidade_id" id="unidade_id" class="form-control form-control-sm" style="font-size: 12px; height: 30   px;" required>
               <option value=""></option>
               @foreach ($terminais as $item)
                   <option value="{{$item->id}} {{( (int)old('unidade_id') === $item->id)?'selected':''}}"> {{$item->descricao}}</option>
@@ -43,7 +43,7 @@
 
           <div class="form-outline mb-2">
             <!-- button -->
-            <button type="submit" class="btn btn-primary pt-1 mt-2 mb-2" style="width: 260px; height: 25px; font-size: 12px; font-weight: 400;"> Autenticar </button>
+            <button type="submit" class="btn btn-primary pt-1 mt-2 mb-2" style="width: 260px; height: 30px; font-size: 12px; font-weight: 400;"> Autenticar </button>
           </div>
           <!-- Checkbox -->
           <div class="form-outline mb-0">

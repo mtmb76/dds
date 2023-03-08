@@ -60,10 +60,12 @@
                                 <a href="/tema/edit/{{$cell->id}}" style="text-decoration: none;">
                                     <span data-feather="edit"></span>
                                 </a>
-                                &nbsp;
-                                <a href="/tema/delete/{{$cell->id}}" style="text-decoration: none;">
-                                    <span data-feather="trash"></span>
-                                </a>
+                                @if(auth()->user()->grupo == 'admin')
+                                    &nbsp;
+                                    <a href="/tema/delete/{{$cell->id}}" style="text-decoration: none;">
+                                        <span data-feather="trash"></span>
+                                    </a>
+                                @endif
                                 &nbsp;
                                 @if ($cell->arquivo)
                                     <a href="../storage/{{ str_replace('public/','',$cell->arquivo)}}" style="text-decoration: none;" target="_blank" rel="noopener">

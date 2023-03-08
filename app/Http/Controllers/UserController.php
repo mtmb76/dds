@@ -82,7 +82,7 @@ class UserController extends Controller
                 'email'         => $request->email,
                 'password'      => bcrypt($request->password),
                 'unidade_id'    => $request->unidade_id,
-                'grupo'         => 'ssma',
+                'grupo'         => '',
                 'ativo'         => 0,
             ]);
 

@@ -265,6 +265,14 @@ class EventoController extends Controller
      */
     public function delete($id)
     {
+        # Se já possuir marcações de presença, não deixa editar o formulário mais...
+        $disabled = Eventoparticipante::where('evento_id', $id)->where('unidade_id', auth()->user()->unidade_id)->count();
+        if($disabled > 0){
+            return back()->withErrors([
+                'resp' => 'Este evento já possui participantes, logo não pode ser excluído.',
+            ])->onlyInput('resp');
+        }
+
         Evento::where('id', $id)->where('unidade_id', auth()->user()->unidade_id)->delete();
         return redirect()->intended('evento/lista');
     }

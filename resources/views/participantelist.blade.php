@@ -71,10 +71,12 @@
                                 <a href="/participante/edit/{{$cell->id}}" style="text-decoration: none;">
                                     <span data-feather="edit"></span>
                                 </a>
-                                &nbsp;
-                                <a href="/participante/delete/{{$cell->id}}" style="text-decoration: none;">
-                                    <span data-feather="trash"></span>
-                                </a>
+                                @if(auth()->user()->grupo == 'admin')
+                                    &nbsp;
+                                    <a href="/participante/delete/{{$cell->id}}" style="text-decoration: none;">
+                                        <span data-feather="trash"></span>
+                                    </a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
