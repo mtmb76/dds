@@ -1,4 +1,4 @@
-<h5> Projeto para implementação de DDS - Diálogo Diário de Segurança </h5>
+<h2> Projeto para implementação de DDS - Diálogo Diário de Segurança </h2>
 
 <p style="color: #ffdb5a; font-size: 12px;">
   Esta é a versão final para deployment no cluster de produção.
